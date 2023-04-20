@@ -3,6 +3,9 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
+
+#define MAX(X, Y) ((X >= Y) ? X : Y)
 
 /**
  * enum rb_color_e - Possible color of a Red-Black tree
@@ -38,7 +41,11 @@ typedef struct rb_tree_s
 
 
 rb_tree_t *rb_tree_node(rb_tree_t *parent, int value, rb_color_t color);
-
+bool valid_colors(rb_tree_t *tree);
+bool is_valid_bst(rb_tree_t *node, int min, int max);
+size_t black_height(rb_tree_t *node);
+size_t check_rb_height(rb_tree_t *node, size_t black_height, size_t rb_height);
+int rb_tree_is_valid(rb_tree_t *tree);
 
 
 #endif /* _RB_TREES_H_ */
