@@ -46,6 +46,19 @@ bool is_valid_bst(rb_tree_t *node, int min, int max);
 size_t black_height(rb_tree_t *node);
 size_t check_rb_height(rb_tree_t *node, size_t black_height, size_t rb_height);
 int rb_tree_is_valid(rb_tree_t *tree);
+rb_tree_t *rb_tree_insert(rb_tree_t **tree, int value);
 
+void rb_tree_rotate_left(rb_tree_t **tree, rb_tree_t *node);
+void rb_tree_rotate_right(rb_tree_t **tree, rb_tree_t *node);
+void rb_fix_insert(rb_tree_t **tree, rb_tree_t *new_node);
+rb_tree_t *rb_fix_left(rb_tree_t **tree, rb_tree_t *new_node);
+rb_tree_t *rb_fix_right(rb_tree_t **tree, rb_tree_t *new_node);
+
+
+
+
+rb_tree_t *rb_tree_insert(rb_tree_t **tree, int value);
+rb_tree_t *array_to_rb_tree(int *array, size_t size);
+rb_tree_t *rb_tree_remove(rb_tree_t *root, int n);
 
 #endif /* _RB_TREES_H_ */
