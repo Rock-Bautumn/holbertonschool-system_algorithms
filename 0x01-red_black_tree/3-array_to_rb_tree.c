@@ -9,7 +9,7 @@
 */
 rb_tree_t *array_to_rb_tree(int *array, size_t size)
 {
-	rb_tree_t *tree;
+	rb_tree_t *tree = NULL;
 	size_t outer = 0, inner = 0;
 
 	if (array == NULL)

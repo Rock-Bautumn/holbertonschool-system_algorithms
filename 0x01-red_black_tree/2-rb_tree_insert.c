@@ -149,11 +149,9 @@ rb_tree_t *rb_fix_right(rb_tree_t **tree, rb_tree_t *new_node)
 
 rb_tree_t *rb_tree_insert(rb_tree_t **tree, int value)
 {
-	rb_tree_t *node, *old_node, *new_node;
+	rb_tree_t *node = NULL, *old_node = NULL, *new_node = NULL;
 
-	node = old_node = new_node = NULL;
-
-	if (tree == NULL)
+	if (!tree)
 		return (NULL);
 
 	node = *tree;
