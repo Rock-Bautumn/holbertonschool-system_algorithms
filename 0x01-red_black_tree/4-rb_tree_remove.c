@@ -111,7 +111,7 @@ rb_tree_t *rb_delete_fix_right(rb_tree_t **root, rb_tree_t *fix_node)
 	{
 		red_node->color = BLACK;
 		fix_node->parent->color = RED;
-		rb_rotate_left(root, fix_node->parent);
+		rb_tree_rotate_left(root, fix_node->parent);
 		red_node = fix_node->parent->right;
 	}
 	if (red_node && red_node->left->color == BLACK &&
@@ -124,13 +124,13 @@ rb_tree_t *rb_delete_fix_right(rb_tree_t **root, rb_tree_t *fix_node)
 	{
 		red_node->left->color = BLACK;
 		red_node->color = RED;
-		rb_rotate_right(root, red_node);
+		rb_tree_rotate_right(root, red_node);
 		red_node = fix_node->parent->right;
 	}
 	red_node->color = fix_node->parent->color;
 	fix_node->parent->color = BLACK;
 	red_node->right->color = BLACK;
-	rb_rotate_left(root, fix_node->parent);
+	rb_tree_rotate_left(root, fix_node->parent);
 
 	return (*root);
 }
@@ -244,7 +244,7 @@ rb_tree_t *rb_tree_remover(rb_tree_t *root, rb_tree_t *del_node)
 		min_node->color = del_node->color;
 	}
 	if (old_color == BLACK)
-		rb_delete_fix(root, fix_node);
+		rb_tree_remove_fix(root, fix_node);
 	free(del_node);
 	return (root);
 }
