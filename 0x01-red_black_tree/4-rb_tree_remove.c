@@ -1,64 +1,10 @@
 #include "rb_trees.h"
 
 /**
- * rb_tree_rotate_left - Rotates a red-black tree in a counter
- *  clockwise direction
- * @tree: The binary search tree to rotate
- * @node: The node to rotate around
- * Return: The newly rotated red-black tree
-*/
-void rb_tree_rotate_left(rb_tree_t **tree, rb_tree_t *node)
-{
-	rb_tree_t *root = node->right;
-
-	node->right = root->left;
-
-	if (root->left)
-		root->left->parent = node;
-	root->parent = node->parent;
-	if (node->parent == NULL)
-		*tree = root;
-	else if (node == node->parent->left)
-		node->parent->left = root;
-	else
-		node->parent->right = root;
-
-	root->left = node;
-	node->parent = root;
-}
-
-
-/**
- * rb_tree_rotate_right - Rotates a red-black tree in a clockwise direction
- * @tree: The red-black tree to rotate
- * @node: The node of the red-black tree to rotate around
- * Return: The newly rotated binary search tree
- */
-
-void rb_tree_rotate_right(rb_tree_t **tree, rb_tree_t *node)
-{
-	rb_tree_t *root = node->left;
-
-	node->left = root->right;
-
-	if (root->right)
-		root->right->parent = node;
-	root->parent = node->parent;
-	if (node->parent == NULL)
-		*tree = root;
-	else if (node == node->parent->left)
-		node->parent->left = root;
-	else
-		node->parent->right = root;
-
-	root->right = node;
-	node->parent = root;
-}
-
-/**
  * rb_delete_fix_left - Perform the fix for the left half of moved node's
  * subtree when a node is deleted
- * @root: The address of the pointer of the root of the moved node's red-black tree
+ * @root: The address of the pointer of the root of the moved node's
+ * red-black tree
  * @fix_node: The moved node of the red-black tree after node deletion
  * Return: The root node
 */
@@ -98,7 +44,8 @@ rb_tree_t *rb_delete_fix_left(rb_tree_t **root, rb_tree_t *fix_node)
 /**
  * rb_delete_fix_right - Perform the fix for the right half of moved node's
  * subtree when a node is deleted
- * @root: The address of the pointer of the root of the moved node's red-black tree
+ * @root: The address of the pointer of the root of the moved node's
+ * red-black tree
  * @fix_node: The moved node of the red-black tree after node deletion
  * Return: The root node
 */
@@ -165,7 +112,8 @@ rb_tree_t *rb_tree_remove_fix(rb_tree_t *root, rb_tree_t *fix_node)
 /**
  * rb_reattach - Fills in the vacuum that will be created when the node to
  * delete is removed by moving the fix_node into the deleted node's place
- * @root: The address of root of the red-black tree that the removal happened in
+ * @root: The address of root of the red-black tree that the removal
+ * happened in
  * @del_node: The address of the node that is being deleted
  * @fix_node: The address of the node that needs to be fixed by moving it into
  * del_node's place.

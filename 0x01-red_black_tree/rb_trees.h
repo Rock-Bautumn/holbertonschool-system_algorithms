@@ -40,6 +40,61 @@ typedef struct rb_tree_s
 } rb_tree_t;
 
 
+/**
+ * rb_tree_rotate_left - Rotates a red-black tree in a counter
+ *  clockwise direction
+ * @tree: The binary search tree to rotate
+ * @node: The node to rotate around
+ * Return: The newly rotated red-black tree
+*/
+void rb_tree_rotate_left(rb_tree_t **tree, rb_tree_t *node)
+{
+	rb_tree_t *root = node->right;
+
+	node->right = root->left;
+
+	if (root->left)
+		root->left->parent = node;
+	root->parent = node->parent;
+	if (node->parent == NULL)
+		*tree = root;
+	else if (node == node->parent->left)
+		node->parent->left = root;
+	else
+		node->parent->right = root;
+
+	root->left = node;
+	node->parent = root;
+}
+
+
+/**
+ * rb_tree_rotate_right - Rotates a red-black tree in a clockwise direction
+ * @tree: The red-black tree to rotate
+ * @node: The node of the red-black tree to rotate around
+ * Return: The newly rotated binary search tree
+ */
+
+void rb_tree_rotate_right(rb_tree_t **tree, rb_tree_t *node)
+{
+	rb_tree_t *root = node->left;
+
+	node->left = root->right;
+
+	if (root->right)
+		root->right->parent = node;
+	root->parent = node->parent;
+	if (node->parent == NULL)
+		*tree = root;
+	else if (node == node->parent->left)
+		node->parent->left = root;
+	else
+		node->parent->right = root;
+
+	root->right = node;
+	node->parent = root;
+}
+
 rb_tree_t *rb_tree_node(rb_tree_t *parent, int value, rb_color_t color);
 bool valid_colors(rb_tree_t *tree);
 bool is_valid_bst(rb_tree_t *node, int min, int max);
@@ -48,12 +103,14 @@ size_t check_rb_height(rb_tree_t *node, size_t black_height, size_t rb_height);
 int rb_tree_is_valid(rb_tree_t *tree);
 rb_tree_t *rb_tree_insert(rb_tree_t **tree, int value);
 
-void rb_tree_rotate_left(rb_tree_t **tree, rb_tree_t *node);
-void rb_tree_rotate_right(rb_tree_t **tree, rb_tree_t *node);
+
 void rb_fix_insert(rb_tree_t **tree, rb_tree_t *new_node);
 rb_tree_t *rb_fix_left(rb_tree_t **tree, rb_tree_t *new_node);
 rb_tree_t *rb_fix_right(rb_tree_t **tree, rb_tree_t *new_node);
 
+
+void rb_reattach(rb_tree_t **root, rb_tree_t *del_node, rb_tree_t *fix_node);
+rb_tree_t *tree_min_node(rb_tree_t *root);
 
 
 
