@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 /**
  * enum edge_type_e - Enumerates the different types of
@@ -72,6 +73,6 @@ graph_t *graph_create(void);
 void graph_display(const graph_t *graph);
 
 vertex_t *graph_add_vertex(graph_t *graph, const char *str);
-
+int graph_add_edge(graph_t *graph, const char *src, const char *dest, edge_type_t type);
 
 #endif /* _GRAPHS_H_ */
