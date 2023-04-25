@@ -4,7 +4,7 @@
  * create_vertex - Create a new vertex and initialize it
  * @string: The string to store in the vertex
  * @index: The index number of the vertex
- * Return The address of the new vertex
+ * Return: The address of the new vertex
 */
 
 vertex_t *create_vertex(const char *string, size_t index)
@@ -28,6 +28,7 @@ vertex_t *create_vertex(const char *string, size_t index)
  * graph_add_vertex - Adds a vertex
  * @graph: The address of the graph to add the vertex to
  * @str: The string/content to add to the vertex
+ * Return: The address of the new vertex
 */
 
 vertex_t *graph_add_vertex(graph_t *graph, const char *str)
